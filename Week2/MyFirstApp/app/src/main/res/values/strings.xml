@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My First App</string>
+    <string name="favorite_lector">Wie is je favoriete docent</string>
+    <string name="action_settings">Settings</string>
+    <string name="ok_button">OK</string>
+    <string name="welcome">Welkom</string>
+
+</resources>

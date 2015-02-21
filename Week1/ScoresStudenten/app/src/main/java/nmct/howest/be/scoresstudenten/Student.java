@@ -35,7 +35,7 @@ public class Student implements Comparable<Student> {
 
     //functies om score toe te voegen
     //tweede functie maakt gebruik van overloading en heeft als extra paramters het aantal studiepunten
-    public void VoegScoreToe(String sModuleNaam, double score) {
+    public void voegScoreToe(String sModuleNaam, double score) {
 
         //maak een object van de klasse ModulePunt
         ModulePunt mp =  new ModulePunt(sModuleNaam, score);
@@ -48,7 +48,7 @@ public class Student implements Comparable<Student> {
         scoresStudent.put(sModuleNaam, mp);
     }
 
-    public void VoegScoreToe(String sModuleNaam, double score, int aantalStudiePunten) {
+    public void voegScoreToe(String sModuleNaam, double score, int aantalStudiePunten) {
         ModulePunt mp =  new ModulePunt(sModuleNaam, aantalStudiePunten, score);
         if (!scoresStudent.containsKey(sModuleNaam)) {
             scoresStudent.put(sModuleNaam, mp);

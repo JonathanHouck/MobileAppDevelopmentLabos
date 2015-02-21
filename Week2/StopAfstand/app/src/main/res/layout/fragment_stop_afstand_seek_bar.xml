@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".StopAfstandActivity$PlaceholderFragment">
+
+    <TextView
+        android:text="@string/selecteer_snelheid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selecteer_snelheid"
+        />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seek_bar_snelheid"
+        android:layout_below="@+id/selecteer_snelheid"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:max="160"
+        android:progress="80"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/snelheid_waarde"
+        android:id="@+id/seek_bar_snelheid_waarde"
+        android:layout_below="@+id/seek_bar_snelheid"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selecteer_reactietijd"
+        android:id="@+id/selecteer_reactietijd"
+        android:layout_below="@+id/seek_bar_snelheid_waarde"
+        android:layout_alignParentStart="true"
+        />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seek_bar_reactietijd"
+        android:layout_below="@+id/selecteer_reactietijd"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:max="5"
+        android:progress="1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reactietijd_waarde"
+        android:id="@+id/seek_bar_reactietijd_waarde"
+        android:layout_below="@+id/seek_bar_reactietijd"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selecteer_wegtype"
+        android:id="@+id/selecteer_wegtype"
+        android:layout_below="@+id/seek_bar_reactietijd_waarde"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wegtype"
+        android:layout_below="@+id/selecteer_wegtype"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Het wegdek ligt droog"
+            android:id="@+id/droog" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Het wegdek ligt nat"
+            android:id="@+id/nat" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bereken_stopafstand"
+        android:id="@+id/button_stopafstand"
+        android:layout_below="@+id/wegtype"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/wegtype"
+        android:layout_marginBottom="25dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stopafstand"
+        android:id="@+id/bereken_stopafstand"
+        android:layout_below="@+id/button_stopafstand"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/stopafstand"
+        android:layout_below="@+id/bereken_stopafstand"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="25sp"/>
+
+</RelativeLayout>

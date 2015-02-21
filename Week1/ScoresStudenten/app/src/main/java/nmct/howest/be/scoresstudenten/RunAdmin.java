@@ -13,16 +13,16 @@ public class RunAdmin {
 
         //HashMap<String, ModulePunt> mapperJonathan = new HashMap<String, ModulePunt>();
         Student Jonathan = new Student("jonathan.houck@student.howest.be");
-        Jonathan.VoegScoreToe("Mobile App Development", 15);
-        Jonathan.VoegScoreToe("New Media", 14);
+        Jonathan.voegScoreToe("Mobile App Development", 15);
+        Jonathan.voegScoreToe("New Media", 14);
 
         Student Nick = new Student("nick.spriet@student.howest.be");
-        Nick.VoegScoreToe("Mobile App Development", 17);
-        Nick.VoegScoreToe("New Media", 11);
+        Nick.voegScoreToe("Mobile App Development", 17);
+        Nick.voegScoreToe("New Media", 11);
 
         Student Stijn = new Student("stijn.deryckere@student.howest.be");
-        Stijn.VoegScoreToe("Mobile App Development", 20);
-        Stijn.VoegScoreToe("New Media", 10);
+        Stijn.voegScoreToe("Mobile App Development", 20);
+        Stijn.voegScoreToe("New Media", 10);
 
         /*List<Student> studenten = new ArrayList<Student>();
         studenten.add(Jonathan);

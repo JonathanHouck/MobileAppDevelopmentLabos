@@ -1,4 +1,4 @@
-package nmct.howest.be.stopafstandcalculator;
+package be.howest.nmct.stopafstand;
 
 import java.util.Scanner;
 
