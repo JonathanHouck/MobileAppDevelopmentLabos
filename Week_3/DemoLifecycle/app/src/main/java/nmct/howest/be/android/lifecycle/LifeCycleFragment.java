@@ -32,6 +32,8 @@ public class LifeCycleFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_lifecycle, container, false);
         this.button_afsluiten = (Button) v.findViewById(R.id.button_afsluiten);
 
+        int SDK_INT = android.os.Build.VERSION.SDK_INT; //testje: versie 21
+
         button_afsluiten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

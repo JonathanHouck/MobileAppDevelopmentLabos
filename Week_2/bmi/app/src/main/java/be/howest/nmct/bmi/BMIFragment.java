@@ -1,8 +1,8 @@
 package be.howest.nmct.bmi;
 
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 /**
- * Created by Jonathan on 21/02/2015.
+ * A simple {@link Fragment} subclass.
  */
 public class BMIFragment extends Fragment {
 
@@ -23,8 +24,14 @@ public class BMIFragment extends Fragment {
     private Button update;
     private ImageView image;
 
+    public BMIFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bmi, container, false);
 
         //int SDK_INT = android.os.Build.VERSION.SDK_INT; //testje: versie 21
