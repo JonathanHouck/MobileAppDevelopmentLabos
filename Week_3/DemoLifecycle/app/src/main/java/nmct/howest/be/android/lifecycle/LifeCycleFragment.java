@@ -29,10 +29,12 @@ public class LifeCycleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Log.d(getClass().getSimpleName(), "onCreateView");
+
         View v = inflater.inflate(R.layout.fragment_lifecycle, container, false);
         this.button_afsluiten = (Button) v.findViewById(R.id.button_afsluiten);
 
-        int SDK_INT = android.os.Build.VERSION.SDK_INT; //testje: versie 21
+        //int SDK_INT = android.os.Build.VERSION.SDK_INT; //testje: versie 21
 
         button_afsluiten.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,11 +46,24 @@ public class LifeCycleFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.d(getClass().getSimpleName(), "onAttach");
+    }
+
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //d staat voor debug
         Log.d(getClass().getSimpleName(), "OnCreate");
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(getClass().getSimpleName(), "OnActivityCreated");
     }
 
     @Override
@@ -76,8 +91,20 @@ public class LifeCycleFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(getClass().getSimpleName(), "onDestroyView");
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(getClass().getSimpleName(), "onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(getClass().getSimpleName(), "onDetach");
     }
 }

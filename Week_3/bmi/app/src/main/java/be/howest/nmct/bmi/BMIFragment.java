@@ -1,6 +1,7 @@
 package be.howest.nmct.bmi;
 
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -37,7 +38,7 @@ public class BMIFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bmi, container, false);
 
-        //getHeightAndMass(v);
+        Log.d(getClass().getSimpleName(), "OnCreateView");
 
         this.height = (EditText) v.findViewById(R.id.height);
         this.mass = (EditText) v.findViewById(R.id.mass);
@@ -70,7 +71,8 @@ public class BMIFragment extends Fragment {
 
     private void berekenBMI() {
         //als de height of de massa leeg is, niets doen
-        if (!(this.height.getText().toString().equals("") || this.mass.getText().toString().equals(""))) {
+        //if (!(this.height.getText().toString().equals("") || this.mass.getText().toString().equals(""))) {
+        if (!(this.height.getText().toString().isEmpty() || this.mass.getText().toString().isEmpty())) {
 
             float tempHeight = Float.parseFloat(this.height.getText().toString());
             int tempMass = Integer.parseInt(this.mass.getText().toString());
@@ -125,9 +127,24 @@ public class BMIFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.d(getClass().getSimpleName(), "onAttach");
+    }
+
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(getClass().getSimpleName(), "onCreate");
+
+        //d staat voor debug
+        Log.d(getClass().getSimpleName(), "OnCreate");
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(getClass().getSimpleName(), "OnActivityCreated");
     }
 
     @Override
@@ -169,8 +186,20 @@ public class BMIFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(getClass().getSimpleName(), "onDestroyView");
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(getClass().getSimpleName(), "onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(getClass().getSimpleName(), "onDetach");
     }
 }

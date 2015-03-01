@@ -1,0 +1,21 @@
+    //voor later
+    
+    //in ColorViewFragment, in de onCreateView methode
+
+    //myColorView = (MyColorView) v.fintViewById(R.id.myColorView1);
+
+    /*
+    if (savedInstanceState != null) {
+        Log.d("ColorView", "onRestore: " + savedInstanceState.getString(SS_COLOR);
+        myColorView.setColor(savedInstanceState.getString(SS_COLOR));
+     */
+
+    /*
+    apart
+
+    public void savedInstanceState(Bundle outState) {
+    super.OnSaveInstanceState(outState);
+    outState.putString(SS_COLOR, myColorView.getColor());
+    Log.d("ColorView", "onSaveInstanceState: " + myColorView.getColor());
+    }
+     */

@@ -1,8 +1,8 @@
-package nmct.howest.be.android.lifecycle;
+package nmct.howest.be.colorpicker;
 
 import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment; //bij oudere versie zorgen dat dit staat bij de packages van het fragment
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,16 +12,15 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-public class LifeCycleActivity extends Activity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lifecycle);
+        setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    //.add(R.id.container, new PlaceholderFragment())
-                    .add(R.id.container, new LifeCycleFragment())
+                    .add(R.id.container, new ColorFragment())
                     .commit();
         }
     }
@@ -30,7 +29,7 @@ public class LifeCycleActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_life_cycle, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -60,7 +59,7 @@ public class LifeCycleActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_lifecycle, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_color_view, container, false);
             return rootView;
         }
     }
