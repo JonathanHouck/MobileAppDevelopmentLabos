@@ -22,7 +22,6 @@ public class ColorFragment extends Fragment {
 
     public ColorView myColorView;
 
-    private static final String SS_SUPER_SAVE_STATE = "super";
     private static final String SS_COLOR = "color";
 
     @Override
@@ -31,12 +30,12 @@ public class ColorFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_color_view, container, false);
 
-        myColorView = (ColorView) v.findViewById(R.id.myColorView1);
+        /*myColorView = (ColorView) v.findViewById(R.id.myColorView1);
 
         if (savedInstanceState != null) {
             Log.d("ColorView", "onRestore: " + savedInstanceState.getString(SS_COLOR));
             myColorView.setColor(savedInstanceState.getString(SS_COLOR));
-        }
+        }*/
 
         return v;
     }
@@ -45,11 +44,11 @@ public class ColorFragment extends Fragment {
 
     //wordt onthouden wanneer je op home duwt en app start,
     //ook wanneer de developper optie (destroy every activity as soon as the user leaves it) aanstaat
-    @Override
+    /*@Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putString(SS_COLOR, myColorView.getColor());
         Log.d("ColorView", "onSaveInstance: " + myColorView.getColor());
-    }
+    }*/
 }

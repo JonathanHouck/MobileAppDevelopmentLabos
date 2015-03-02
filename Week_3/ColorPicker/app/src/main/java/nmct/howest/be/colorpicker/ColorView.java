@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -21,8 +23,7 @@ public class ColorView extends View {
     private Paint paint;
     private Rect rect;
 
-    //private static final String SS_SUPER_SAVE_STATE = "super";
-    //private static final String SS_COLOR = "color";
+    private static final String SS_SUPER_SAVE_STATE = "super";
 
 
     public ColorView(Context context) {
@@ -114,5 +115,23 @@ public class ColorView extends View {
             default:
                 break;
         }
+    }
+
+    //zie slide 58 theorie 2
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superSaveState = super.onSaveInstanceState();
+        Bundle saveState = new Bundle();
+        saveState.putParcelable(SS_SUPER_SAVE_STATE, superSaveState);
+        saveState.putString(SS_SUPER_SAVE_STATE, this.color);
+
+        return saveState;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        Bundle saveState = (Bundle) state;
+        this.color = saveState.getString(SS_SUPER_SAVE_STATE);
+        super.onRestoreInstanceState(saveState.getParcelable(SS_SUPER_SAVE_STATE));
     }
 }
