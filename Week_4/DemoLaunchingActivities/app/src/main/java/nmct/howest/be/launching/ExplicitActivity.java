@@ -14,9 +14,12 @@ public class ExplicitActivity extends Activity {
 
     public static final String EXTRA_INFO = "be.howest.nmct.android.launching.EXTRA_INFO";
 
+    public static final int RESULT_CODE_NOIDEA = 5;
+
     private TextView textview;
     private Button btnOk;
     private Button btnCancel;
+    private Button btnNoIdea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,19 @@ public class ExplicitActivity extends Activity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
+                finish();
+            }
+        });
+
+        btnNoIdea = (Button) findViewById(R.id.btnNoIdea);
+        btnNoIdea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //setResult(RESULT_CODE_NOIDEA);
+                Intent intent = new Intent();
+                intent.putExtra(MainActivity.EXTRA_INFO_BACK_LASTNAME, "Walcarius");
+                intent.putExtra(MainActivity.EXTRA_INFO_BACK_AGE, 40);
+                setResult(ExplicitActivity.RESULT_CODE_NOIDEA, intent);
                 finish();
             }
         });

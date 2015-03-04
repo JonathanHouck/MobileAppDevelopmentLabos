@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NMCT</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="DialNumber">Dial number</string>
+    <string name="MakeCall">Make call</string>
+    <string name="Webbrowser">Webbrowser nmct.be</string>
+    <string name="GeoLoc">Geolocation</string>
+    <string name="Contacts">Contacts</string>
+    <string name="EditContact">Edit first contact</string>
+    <string name="CalcBMI">Calculate BMI</string>
+</resources>

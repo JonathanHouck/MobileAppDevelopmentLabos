@@ -10,5 +10,12 @@
     <string name="StartActivity2">Start activity 2</string>
     <string name="Ok">OK</string>
     <string name="Cancel">Cancel</string>
+    <string name="own_result">Give own result</string>
+    <string name="NoIdea">No idea</string>
+    <string name="ShowDialog">Show dialog</string>
+    <string name="DialogTitle">Give your score</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

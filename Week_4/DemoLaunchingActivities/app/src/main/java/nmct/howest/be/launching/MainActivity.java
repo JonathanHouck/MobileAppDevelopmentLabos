@@ -1,6 +1,8 @@
 package nmct.howest.be.launching;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,21 +14,39 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    private Button buttonStartActivity2;
+    private Button btnStartActivity2;
+    private Button btnShowDialog;
     private static final int REQUEST_CODE_EXPLICIT = 1;
+
+    public static final String EXTRA_INFO_BACK_LASTNAME = "Lastname";
+    public static final String EXTRA_INFO_BACK_AGE = "Age";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonStartActivity2 = (Button) findViewById(R.id.buttonStartActivity2);
-        buttonStartActivity2.setOnClickListener(new View.OnClickListener() {
+        btnStartActivity2 = (Button) findViewById(R.id.btnStartActivity2);
+        btnStartActivity2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startSecondActivity(v);
             }
         });
+
+        btnShowDialog = (Button) findViewById(R.id.btnShowDialog);
+        btnShowDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowDialog();
+            }
+        });
+    }
+
+    private void ShowDialog() {
+        FragmentManager fm = getFragmentManager();
+        ShowDialogFragment dialog = new ShowDialogFragment();
+        dialog.show(fm, "dialog");
     }
 
     @Override
@@ -41,6 +61,14 @@ public class MainActivity extends Activity {
                         break;
                     case RESULT_OK:
                         Toast.makeText(MainActivity.this, "User selects Canel", Toast.LENGTH_SHORT).show();
+                        break;
+                    case ExplicitActivity.RESULT_CODE_NOIDEA:
+                        ///Toast.makeText(MainActivity.this, "User selects: Give own result", Toast.LENGTH_SHORT).show();
+
+                        String value = data.getStringExtra(MainActivity.EXTRA_INFO_BACK_LASTNAME);
+                        //0 is default value
+                        int age = data.getIntExtra(MainActivity.EXTRA_INFO_BACK_AGE, 0);
+                        Toast.makeText(MainActivity.this, "No Idea what's happening there " + value + " - " + age, Toast.LENGTH_SHORT).show();
                         break;
                 }
                 break;
