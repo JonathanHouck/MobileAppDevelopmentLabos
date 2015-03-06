@@ -10,4 +10,8 @@
     <string name="Contacts">Contacts</string>
     <string name="EditContact">Edit first contact</string>
     <string name="CalcBMI">Calculate BMI</string>
+    <string name="title_activity_location">LocationActivity</string>
+    <string name="Location">Locatie</string>
+    <string name="btnToonLocatie">Toon locatie</string>
+    <string name="ToonLocatie">ToonLocatie</string>
 </resources>

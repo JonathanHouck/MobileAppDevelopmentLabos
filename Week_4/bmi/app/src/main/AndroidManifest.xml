@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="be.howest.nmct.demoimplicit" >
-
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    package="be.howest.nmct.bmi" >
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -14,13 +12,12 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="be.howest.nmct.bmi" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!-- intent maken met die actie zonder categorie te hoeven specificiëren-->
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".LocationActivity"
-            android:label="@string/title_activity_location" >
         </activity>
     </application>
 
