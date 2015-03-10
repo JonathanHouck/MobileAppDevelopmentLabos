@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <TextView
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bedrag_in_€"
+        android:id="@+id/textView_bedrag_in_€"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_bedrag_in_€"
+        android:layout_below="@+id/textView_bedrag_in_€"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hint_bedrag_in_€"
+        android:inputType="numberDecimal"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/editText_bedrag_in_€"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingLeft="40dp"
+        android:paddingTop="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="40dp">
+
+        <Button
+            style="@style/CustomStyleButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/naar_bitcoin"
+            android:id="@+id/btnNaarBitcoin"
+            android:layout_marginRight="16dp"
+            />
+
+        <Button
+            style="@style/CustomStyleButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/naar_Euro"
+            android:id="@+id/btnNaarEuro"
+            />
+    </LinearLayout>
+
+    <TextView
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bedrag_in_bitcoin"
+        android:id="@+id/textView_bedrag_in_bitcoin"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/linearLayout"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_bedrag_in_bitcoin"
+        android:layout_below="@+id/textView_bedrag_in_bitcoin"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hint_bedrag_in_bitcoin"
+        android:layout_marginTop="10dp"
+        android:inputType="numberDecimal"
+        />
+
+    <!-- eerst Button daarna Textview anders wordt "layout_above" niet herkent" -->
+    <Button
+        style="@style/CustomStyleButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wijzig_wisselkoers"
+        android:id="@+id/btnWijzigWisselkoers"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wisselkoers"
+        android:id="@+id/textView_wisselkoers"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/btnWijzigWisselkoers"
+        android:gravity="center_horizontal"
+        />
+</RelativeLayout>

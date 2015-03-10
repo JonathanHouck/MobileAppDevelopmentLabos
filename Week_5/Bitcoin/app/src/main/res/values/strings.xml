@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Bitcoin</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="bedrag_in_€">Uw bedrag in €</string>
+    <string name="hint_bedrag_in_€">0 euro</string>
+    <string name="naar_bitcoin">Naar bitcoin</string>
+    <string name="naar_Euro">Naar euro</string>
+    <string name="hint_bedrag_in_bitcoin">0 bitcoin</string>
+    <string name="wisselkoers">1 bitcoin = 100.0</string>
+    <string name="wijzig_wisselkoers">Wijzig koers euro - bitcoin</string>
+    <string name="een_bitcoin">1 Bitcoin =</string>
+    <string name="hint_100">100.0</string>
+    <string name="euro">€</string>
+    <string name="wijzigen">Wijzigen</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bedrag_in_bitcoin">Uw bedrag in bitcoin</string>
+</resources>
