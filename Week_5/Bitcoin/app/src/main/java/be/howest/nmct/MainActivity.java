@@ -3,6 +3,7 @@ package be.howest.nmct;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,20 +13,27 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ChangeFragment.OnChangeFragmentListener, BitcoinRateFragment.OnBitcoinRateFragmentListener {
+
+    private float rate1BitcoinInEuros = 100f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new ChangeFragment())
+                    .commit();
+        }*/
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    //.add(R.id.container, new PlaceholderFragment())
-                    .add(R.id.container, new BitcoinRateFragment())
+                    .add(R.id.container, ChangeFragment.newInstance(rate1BitcoinInEuros), "changeFragment")
+                    .addToBackStack("start_ChangeFragment")
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,19 +57,47 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
+    public void showFragmentChange(Float rate1BitcoinInEuros) {
+        //ChangeFragment newFragment = ChangeFragment.newInstance(rate1BitcoinInEuros);
+        ChangeFragment fragment = (ChangeFragment) getFragmentManager().findFragmentByTag("changeFragment");
+        fragment.setRate1BitcoinInEuros(rate1BitcoinInEuros);
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_change, container, false);
-            return rootView;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+
+    public void showFragmentBitcoinRate(Float rate1BitcoinInEuros) {
+        BitcoinRateFragment newFragment =  BitcoinRateFragment.newInstance(rate1BitcoinInEuros);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack("start_BitcoinRateFragment");
+
+        transaction.replace(R.id.container, newFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+
+    @Override
+    public void demandBitcoinConverter(Float rate1BitcoinInEuros) {
+        showFragmentChange(rate1BitcoinInEuros);
+    }
+
+    @Override
+    public void demandNewBitcoinRate(Float rate1BitcoinInEuros) {
+        showFragmentBitcoinRate(rate1BitcoinInEuros);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
+        } else {
+            super.onBackPressed();
         }
     }
 }

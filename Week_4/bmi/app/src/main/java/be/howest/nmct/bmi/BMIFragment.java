@@ -20,8 +20,8 @@ import android.widget.TextView;
  */
 public class BMIFragment extends Fragment {
 
-    private TextView height;
-    private TextView mass;
+    private EditText height;
+    private EditText mass;
     private TextView index;
     private TextView category;
     private Button update;
