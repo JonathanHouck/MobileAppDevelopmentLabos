@@ -26,6 +26,16 @@ public class ChangeFragment extends Fragment {
 
     private OnChangeFragmentListener mListener;
 
+    private EditText editText_bedrag_in_€;
+    private EditText editText_bedrag_in_bitcoin;
+
+    private Button btnNaarEuro;
+    private Button btnNaarBitcoin;
+    private Button btnWijzigKoers;
+
+    private TextView textview_wisselkoers;
+
+
     public static ChangeFragment newInstance(float bitcoinrate) {
         ChangeFragment fragment = new ChangeFragment();
         Bundle args = new Bundle();
@@ -55,28 +65,11 @@ public class ChangeFragment extends Fragment {
         }
     }
 
-    private EditText editText_bedrag_in_€;
-    private EditText editText_bedrag_in_bitcoin;
-
-    private Button btnNaarEuro;
-    private Button btnNaarBitcoin;
-    private Button btnWijzigKoers;
-
-    private TextView textview_wisselkoers;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_change, container, false);
-
-        if (savedInstanceState != null) {
-            Float bedrag_in_€ = savedInstanceState.getFloat("bedrag_in_€", 0);
-            Float bedrag_in_bitcoin = savedInstanceState.getFloat("bedrag_in_bitcoin", 0);
-
-            if (bedrag_in_€ != 0) editText_bedrag_in_€.setText(bedrag_in_€.toString());
-            if (bedrag_in_bitcoin != 0) editText_bedrag_in_bitcoin.setText((bedrag_in_bitcoin.toString()));
-        }
 
         editText_bedrag_in_€ = (EditText) v.findViewById(R.id.editText_bedrag_in_€);
         editText_bedrag_in_bitcoin = (EditText) v.findViewById(R.id.editText_bedrag_in_bitcoin);
@@ -86,6 +79,15 @@ public class ChangeFragment extends Fragment {
         btnWijzigKoers = (Button) v.findViewById(R.id.btnWijzigWisselkoers);
 
         textview_wisselkoers = (TextView) v.findViewById(R.id.textView_wisselkoers);
+
+        if (savedInstanceState != null) {
+            Float bedrag_in_€ = savedInstanceState.getFloat("bedrag_in_€", 0);
+            Float bedrag_in_bitcoin = savedInstanceState.getFloat("bedrag_in_bitcoin", 0);
+
+            if (bedrag_in_€ != 0) editText_bedrag_in_€.setText(bedrag_in_€.toString());
+            if (bedrag_in_bitcoin != 0) editText_bedrag_in_bitcoin.setText((bedrag_in_bitcoin.toString()));
+        }
+
         toonWisselkoers();
 
         btnNaarEuro.setOnClickListener(new View.OnClickListener() {
