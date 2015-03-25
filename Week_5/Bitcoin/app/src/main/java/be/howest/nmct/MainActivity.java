@@ -3,6 +3,7 @@ package be.howest.nmct;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,8 +30,8 @@ public class MainActivity extends Activity implements ChangeFragment.OnChangeFra
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, ChangeFragment.newInstance(rate1BitcoinInEuros), "changeFragment")
-                    .addToBackStack("start_ChangeFragment")
+                    .add(R.id.container, ChangeFragment.newInstance(rate1BitcoinInEuros), "ChangeFragment")
+                    //.addToBackStack("start_changeFragment")
                     .commit();
         }
     }
@@ -59,27 +60,39 @@ public class MainActivity extends Activity implements ChangeFragment.OnChangeFra
 
 
     public void showFragmentChange(Float rate1BitcoinInEuros) {
-        //ChangeFragment newFragment = ChangeFragment.newInstance(rate1BitcoinInEuros);
+        /*//ChangeFragment newFragment = ChangeFragment.newInstance(rate1BitcoinInEuros);
         ChangeFragment fragment = (ChangeFragment) getFragmentManager().findFragmentByTag("changeFragment");
         fragment.setRate1BitcoinInEuros(rate1BitcoinInEuros);
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
+        transaction.commit();*/
 
-        transaction.commit();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
+
+        ChangeFragment fragment = (ChangeFragment) getFragmentManager().findFragmentByTag("ChangeFragment");
+        fragment.setRate1BitcoinInEuros(rate1BitcoinInEuros);
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction = fragmentTransaction.replace(R.id.container, fragment, "ChangeFragment");
+        fragmentTransaction.commit();
+
     }
 
     public void showFragmentBitcoinRate(Float rate1BitcoinInEuros) {
-        BitcoinRateFragment newFragment =  BitcoinRateFragment.newInstance(rate1BitcoinInEuros);
-
+        /*BitcoinRateFragment newFragment =  BitcoinRateFragment.newInstance(rate1BitcoinInEuros);
         FragmentTransaction transaction = getFragmentManager().beginTransaction().addToBackStack("start_BitcoinRateFragment");
-
         transaction.replace(R.id.container, newFragment);
         transaction.addToBackStack(null);
+        transaction.commit();*/
 
-        transaction.commit();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        BitcoinRateFragment newFragment = BitcoinRateFragment.newInstance(rate1BitcoinInEuros);
+        fragmentTransaction.replace(R.id.container, newFragment, "BitcoinRateFragment");
+        fragmentTransaction.addToBackStack("show_new_rate");
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -92,12 +105,12 @@ public class MainActivity extends Activity implements ChangeFragment.OnChangeFra
         showFragmentBitcoinRate(rate1BitcoinInEuros);
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() == 1) {
             finish();
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 }

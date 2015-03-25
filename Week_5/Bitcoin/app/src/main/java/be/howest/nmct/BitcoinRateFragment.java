@@ -48,7 +48,7 @@ public class BitcoinRateFragment extends Fragment {
 
         //parameters bijhouden
         if (getArguments() != null) {
-            rate1BitcoinInEuros = getArguments().getFloat(BITCOIN_RATE);
+            rate1BitcoinInEuros = getArguments().getFloat(BITCOIN_RATE, 100f);
         }
     }
 

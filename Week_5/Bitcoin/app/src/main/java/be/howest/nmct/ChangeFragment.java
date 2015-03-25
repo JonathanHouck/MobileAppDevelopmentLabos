@@ -20,7 +20,7 @@ import android.widget.TextView;
 public class ChangeFragment extends Fragment {
 
     private static final String BITCOIN_RATE = "be.howest.nmct.NEW_BITCOIN_RATE";
-    private Float rate1BitcoinInEuros = 100f;
+    private Float rate1BitcoinInEuros;
 
     public static final String PREFS_RATE = "PrefRate";
 
@@ -35,6 +35,9 @@ public class ChangeFragment extends Fragment {
 
     private TextView textview_wisselkoers;
 
+    public ChangeFragment() {
+        // Required empty public constructor
+    }
 
     public static ChangeFragment newInstance(float bitcoinrate) {
         ChangeFragment fragment = new ChangeFragment();
@@ -42,10 +45,6 @@ public class ChangeFragment extends Fragment {
         args.putFloat(BITCOIN_RATE, bitcoinrate);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public ChangeFragment() {
-        // Required empty public constructor
     }
 
     public void setRate1BitcoinInEuros(Float rate) {
@@ -56,12 +55,8 @@ public class ChangeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //wisselkoers ophalen wanneer app eindigt
-        SharedPreferences settings = getActivity().getSharedPreferences(PREFS_RATE, 0);
-        rate1BitcoinInEuros = settings.getFloat("rate", 100);
-
         if (getArguments() != null) {
-            rate1BitcoinInEuros = getArguments().getFloat(BITCOIN_RATE);
+            rate1BitcoinInEuros = getArguments().getFloat(BITCOIN_RATE, 100f);
         }
     }
 
@@ -154,14 +149,32 @@ public class ChangeFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+        //als je het scherm roteert staat de rate terug op 100 en wordt hij opgehaald uit SharedPreferences
+        //als je het bedrag wijzigt en op de button klikt mag BITCOIN_RATE niet opgehaald worden
+
+        //--> de onStop methode wordt hier niet meer uitgevoert (logish) en de onStart() methode zal dus nog de oude waarde krijgen
+        //--> niet de ingevoerde waarde uit het tekstvak
+        //--> dit is niet de bedoeling, daarom enkel maar uitvoeren als de rate op 100 staat
+        if (rate1BitcoinInEuros == 100) {
+            SharedPreferences settings = getActivity().getSharedPreferences(PREFS_RATE, 0);
+            rate1BitcoinInEuros = settings.getFloat(BITCOIN_RATE, 100f);
+        }
+
+        toonWisselkoers();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 
         SharedPreferences settings = getActivity().getSharedPreferences(PREFS_RATE, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putFloat("rate", rate1BitcoinInEuros);
+        editor.putFloat(BITCOIN_RATE, rate1BitcoinInEuros);
 
-        // Commit the edits!
+        // Commit the edits!5
         editor.commit();
     }
 
