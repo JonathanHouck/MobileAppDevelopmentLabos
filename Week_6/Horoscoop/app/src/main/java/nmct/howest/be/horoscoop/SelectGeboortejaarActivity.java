@@ -2,11 +2,14 @@ package nmct.howest.be.horoscoop;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,26 +36,15 @@ public class SelectGeboortejaarActivity extends ListActivity {
         setListAdapter(myListAdapter);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_select_geboortejaar, menu);
-        return true;
-    }
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        //super.onListItemClick(l, v, position, id);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        String sGeboortejaar = GEBOORTEJAREN.get(position);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        Intent intent = new Intent();
+        intent.putExtra(MainActivity.EXTRA_BIRTHYEAR, sGeboortejaar);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

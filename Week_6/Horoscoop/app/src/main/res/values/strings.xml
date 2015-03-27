@@ -8,4 +8,8 @@
     <string name="uw_voornaam">Uw voornaam</string>
     <string name="title_activity_select_geboortejaar">Selecteer uw geboortejaar</string>
     <string name="title_activity_horoscoop">Selecteer uw horoscoop</string>
+    <string name="geboortejaar">Geboortejaar:</string>
+    <string name="selecteer_geboortejaar">Selecteer uw geboortejaar</string>
+    <string name="selecteer_horoscoop">Selecteer uw horoscoop</string>
+    <string name="toon_info">info</string>
 </resources>

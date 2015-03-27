@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:id="@+id/row_horoscoop">
+
+    <ImageView
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagesView_horoscoop"
+        android:src="@drawable/boogschutter"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="Naam"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/textView_naam_horoscoop"
+        android:layout_toEndOf="@+id/imagesView_horoscoop" />
+
+    <!--hier nog custom background instellen voor de button met
+    android:background="@drawable/mijn_button" -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/toon_info"
+        android:id="@+id/button_info"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textColor="#ffffff"
+        android:background="#000000" />
+</RelativeLayout>
