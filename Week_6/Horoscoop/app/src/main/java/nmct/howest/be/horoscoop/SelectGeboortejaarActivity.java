@@ -23,7 +23,7 @@ public class SelectGeboortejaarActivity extends ListActivity {
 
     static {
         GEBOORTEJAREN = new ArrayList<>(Calendar.getInstance().get(Calendar.YEAR) - 1900);
-        for (int jaar = 1900; jaar < Calendar.getInstance().get(Calendar.YEAR); jaar++) {
+        for (int jaar = 1900; jaar <= Calendar.getInstance().get(Calendar.YEAR); jaar++) {
             GEBOORTEJAREN.add("" + jaar);
         }
 

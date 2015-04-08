@@ -2,6 +2,7 @@ package nmct.howest.be.horoscoop;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,16 +15,21 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    Button button_selecteer_geboortejaar;
-    Button button_selecteer_horoscoop;
-    TextView textView_Geboortejaar;
-    ImageView imageView_keuze_horoscoop;
+    private Button button_selecteer_geboortejaar;
+    private Button button_selecteer_horoscoop;
+    private TextView textView_Geboortejaar;
+    private ImageView imageView_keuze_horoscoop;
+
+    private String geboortejaar;
+    private int resource_id_horoscoop;
 
     public static final String EXTRA_BIRTHYEAR = "be.howest.nmct.week5oef1.BIRTHYEAR";
     public static final String EXTRA_HOROSCOOP = "be.howest.nmct.week5oef1.HOROSCOOP";
 
     private static final int REQUEST_BIRTHDAY = 1;
     private static final int REQUEST_HOROSCOOP = 2;
+
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,14 @@ public class MainActivity extends Activity {
         button_selecteer_horoscoop = (Button) findViewById(R.id.button_selecteer_horoscoop);
         textView_Geboortejaar = (TextView) findViewById(R.id.textView_Geboortejaar);
         imageView_keuze_horoscoop = (ImageView) findViewById(R.id.imageView_keuze_horoscoop);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        geboortejaar = settings.getString("geboortejaar", "");
+        textView_Geboortejaar.setText(geboortejaar);
+
+        resource_id_horoscoop = settings.getInt("position_horoscoop", 0);
+        imageView_keuze_horoscoop.setImageResource(resource_id_horoscoop);
 
         button_selecteer_geboortejaar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +62,6 @@ public class MainActivity extends Activity {
                 selecteerHoroscoop(v);
             }
         });
-
     }
 
     private void selecteerGeboortejaar(View v) {
@@ -60,7 +73,6 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, HoroscoopActivity.class);
         startActivityForResult(intent, REQUEST_HOROSCOOP);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,26 +103,39 @@ public class MainActivity extends Activity {
             case REQUEST_BIRTHDAY:
                 switch (resultCode) {
                     case RESULT_OK:
-                        String selectedYear = data.getStringExtra(MainActivity.EXTRA_BIRTHYEAR);
-                        textView_Geboortejaar.setText("Geboortejaar: " + selectedYear);
+                        geboortejaar = data.getStringExtra(MainActivity.EXTRA_BIRTHYEAR);
+                        textView_Geboortejaar.setText("Geboortejaar: " + geboortejaar);
                         break;
                     case RESULT_CANCELED:
                         Toast.makeText(MainActivity.this, "Geen geboortedatum gekozen", Toast.LENGTH_SHORT).show();
                         break;
                 }
+                break;
             case REQUEST_HOROSCOOP:
                 switch (resultCode) {
                     case RESULT_OK:
-                        int position = data.getIntExtra(MainActivity.EXTRA_HOROSCOOP, 0);
-                        Data.Horoscoop horoscoop = Data.Horoscoop.values()[position];
-                        imageView_keuze_horoscoop.setImageResource(HoroscoopFuncties.getResourceId(horoscoop));
+                        resource_id_horoscoop = data.getIntExtra(MainActivity.EXTRA_HOROSCOOP, 0);
+                        imageView_keuze_horoscoop.setImageResource(resource_id_horoscoop);
                         break;
                     case RESULT_CANCELED:
                         Toast.makeText(MainActivity.this, "Geen horoscoop gekozen", Toast.LENGTH_SHORT).show();
                         break;
                 }
+                break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("geboortejaar", textView_Geboortejaar.getText().toString());
+        editor.putInt("position_horoscoop", resource_id_horoscoop);
+
+        editor.commit();
     }
 }

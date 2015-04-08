@@ -79,7 +79,11 @@ public class HoroscoopActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         Intent intent = new Intent();
-        intent.putExtra(MainActivity.EXTRA_HOROSCOOP, position);
+
+        Data.Horoscoop horoscoop = Data.Horoscoop.values()[position];
+        int resource_id_horoscoop = HoroscoopFuncties.getResourceId(horoscoop);
+        intent.putExtra(MainActivity.EXTRA_HOROSCOOP, resource_id_horoscoop);
+
         setResult(RESULT_OK, intent);
         finish();
     }

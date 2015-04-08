@@ -12,4 +12,6 @@
     <string name="selecteer_geboortejaar">Selecteer uw geboortejaar</string>
     <string name="selecteer_horoscoop">Selecteer uw horoscoop</string>
     <string name="toon_info">info</string>
+    <string name="naam">Naam</string>
+    <string name="horoscoop">Horoscoop</string>
 </resources>

@@ -1,4 +1,4 @@
-package be.howest.nmct.evaluationstudents.data;
+package be.howest.nmct.admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,32 +12,8 @@ public final class StudentAdmin {
      * @param args
      */
 
-    private List<Student> studenten;
-
-    private static StudentAdmin instance = new StudentAdmin();
-
-    private StudentAdmin() {
-        loadStudenten();
-    }
-
-    public static StudentAdmin getInstance() {
-        return instance;
-    }
-
-    public List<Student> getStudenten() {
-        return studenten;
-    }
-
-
-    public Student getStudent(String sEmailStudent) {
-        for (Student student : getStudenten()) {
-            if (student.getEmailStudent().equals(sEmailStudent)) return student;
-        }
-        return null;
-    }
-
-    private void loadStudenten() {
-
+    private static List<Student> studenten;
+    static {
         studenten = new ArrayList<Student>();
 
         Student s1 = new Student("stijn.walcarius@howest.be", "Stijn", "Walcarius");
@@ -158,7 +134,29 @@ public final class StudentAdmin {
         studenten.add(s9);
         studenten.add(s10);
 
+
     }
+
+    public static List<Student> getStudenten() {
+        return studenten;
+    }
+
+    public static Student getStudent(String sEmailStudent) {
+        for (Student student : getStudenten()) {
+            if (student.getEmailStudent().equals(sEmailStudent)) return student;
+        }
+        return null;
+    }
+
+    public static List<Student> getStudenten(Student.DIPLOMAGRAAD diplomagraad) {
+        List<Student> selectedStudenten = new ArrayList<>();
+
+        for (Student s : getStudenten())
+            if (s.getDiplomagraad().equals(diplomagraad)) selectedStudenten.add(s);
+
+        return selectedStudenten;
+    }
+
 
 
 }

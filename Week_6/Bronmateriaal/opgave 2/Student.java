@@ -1,4 +1,4 @@
-package be.howest.nmct.evaluationstudents.data;
+package be.howest.nmct.admin;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,9 +8,58 @@ import java.util.Map;
 
 public class Student implements Comparable<Student> {
 
+    public enum DIPLOMAGRAAD {
+        GROOTSTE("Grootste onderscheiding",16.5f,20f,"Geslaagd met de grootste onderscheiding"),
+        GROTE("Grote onderscheiding",15f,16.5f,"Geslaagd met grote onderscheiding"),
+        ONDERSCHEIDING("Onderscheiding",13.5f,15f,"Geslaagd met onderscheiding"),
+        VOLDOENING("Voldoening",10f,13.5f,"Geslaagd op voldoende wijze"),
+        NIET_GESLAAGD("Niet geslaagd",0f,10f,"Niet geslaagd");
+
+        private String naam;
+        private float benedengrens;
+        private float bovengrens;
+        private String omschrijving;
+
+        DIPLOMAGRAAD(String naam, float benedengrens, float bovengrens, String omschrijving) {
+            this.naam = naam;
+            this.benedengrens = benedengrens;
+            this.bovengrens = bovengrens;
+            this.omschrijving = omschrijving;
+        }
+
+        public String getNaam() {
+            return naam;
+        }
+
+        public float getBenedengrens() {
+            return benedengrens;
+        }
+
+        public float getBovengrens() {
+            return bovengrens;
+        }
+
+        public String getOmschrijving() {
+            return omschrijving;
+        }
+
+        public boolean isBinnenGrenzen(float score) {
+            return score >= benedengrens && score < bovengrens;
+        }
+
+        public static DIPLOMAGRAAD getDiplomagraad(float score) {
+            for(DIPLOMAGRAAD diplomagraad : DIPLOMAGRAAD.values()) {
+                if(diplomagraad.isBinnenGrenzen(score)) return diplomagraad;
+            }
+            if (score == 20f) return DIPLOMAGRAAD.GROOTSTE;
+            return null;
+        }
+
+    }
+
+
 	private String naamStudent;
 	private String voornaamStudent;
-
 	private String emailStudent;
 	private Map<String, ModulePunt> scoresStudent = new HashMap<String, ModulePunt>();
 
@@ -99,13 +148,6 @@ public class Student implements Comparable<Student> {
 	public int compareTo(Student other) {
 		// TODO Auto-generated method stub
 
-		// deze methode geeft een getal terug
-		// ofwel 0: dan zijn beide objecten even groot voor hem
-		// ofwel getal groter dan 0: je bent groter dan het object waarmee je
-		// vergelijkt
-		// ofwel getal kleind dan 0: je bent kleiner dan het object waarmee je
-		// vergelijkt
-
 		// eerst mijn totale score ophalen
 		double mijnTotaleScore = this.getTotaleScoreStudent();
 
@@ -148,48 +190,10 @@ public class Student implements Comparable<Student> {
 		return true;
 	}
 
-	// static methodes
-	// 1 geef een lijst met alle scores van een module terug
-	public static List<Double> getScoresModule(List<Student> studenten,
-			String moduleNaam) {
-		List<Double> scores = new ArrayList<Double>();
-		for (Student student : studenten) {
-			if (student.getScoresStudent().containsKey(moduleNaam)) {
-				scores.add(student.getScoresStudent().get(moduleNaam)
-						.getScore());
-			}
-		}
-		return scores;
-	}
+    public DIPLOMAGRAAD getDiplomagraad(){
+        return DIPLOMAGRAAD.getDiplomagraad((float)getTotaleScoreStudent());
+    }
 
-	// 2 bepaal gemiddelde van een module over verschillende studenten heen
-	public static double getGemiddeldeScoreModule(List<Student> studenten,
-			String moduleNaam) {
-		double totaal = 0;
-		List<Double> scores = getScoresModule(studenten, moduleNaam);
-		for (Double score : scores) {
-			totaal += score.doubleValue();
-		}
-		return totaal / scores.size();
-	}
 
-	// 3 sorteer studenten volgens hun totaal percentage
-	public static void sorteerStudenten(List<Student> studenten) {
-		Collections.sort(studenten);
-	}
-
-	//4 bepaal alle unieke modulenamen
-	public static List<String> getModuleNamen(List<Student> studenten) {
-		List<String> uniekeNamenModules = new ArrayList<String>();
-
-		for (Student student : studenten) {
-			for (String modulenaam : student.getScoresStudent().keySet()) {
-				if (!uniekeNamenModules.contains(modulenaam)) {
-					uniekeNamenModules.add(modulenaam);
-				}
-			}
-		}
-		return uniekeNamenModules;
-	}
 
 }
