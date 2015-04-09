@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView_student"
+        android:src="@drawable/student_green"
+        android:adjustViewBounds="true"
+        android:maxHeight="80dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageView_student"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/relativeLayout">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/steven"
+            android:id="@+id/textView_naam"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/verborgh"
+            android:id="@+id/textView_voornaam"
+            android:layout_toEndOf="@id/textView_naam"
+            android:layout_marginStart="4dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_steven"
+            android:id="@+id/textView_email"
+            android:layout_below="@+id/textView_naam"
+            android:layout_marginTop="4dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelscore"
+            android:id="@+id/textView_labelscore"
+            android:layout_below="@+id/textView_email"
+            android:layout_marginTop="4dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score"
+            android:id="@+id/textView_score"
+            android:layout_below="@+id/textView_email"
+            android:layout_toEndOf="@id/textView_labelscore"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

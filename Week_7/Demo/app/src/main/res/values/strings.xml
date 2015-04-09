@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">2NMCT</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="lastname">naam</string>
+    <string name="firstname">voornaam</string>
+    <string name="email">email</string>
+    <string name="semester">Semester: </string>
+    <string name="nummer_semester">1</string>
+    <string name="select_module">Selecteer een module: </string>
+    <string name="aantal_docenten">Aantal docenten: </string>
+    <string name="nummer_docenten">1</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="naam_module">Naam module</string>
+    <string name="voornaam_docent">voornaam</string>
+    <string name="naam_docent">naam</string>
+
+</resources>

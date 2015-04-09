@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginBottom="5dp">
+
+
+    <ImageView
+        android:id="@+id/imageViewCourse"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="2dp"
+        android:src="@drawable/course" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/imageViewCourse"
+        android:orientation="horizontal"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/textViewModulenaam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lastname"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:textStyle="bold"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+
+
+        <TextView
+            android:id="@+id/textviewSemester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nummer_semester"
+            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/textViewAantalDocenten"
+            android:layout_alignBaseline="@+id/textViewAantalDocenten" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/semester"
+            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+            android:layout_toLeftOf="@id/textviewSemester"
+            android:layout_marginRight="4dp"
+            android:layout_alignBaseline="@id/textviewSemester" />
+
+        <TextView
+            android:id="@+id/textViewAantal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aantal_docenten"
+            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+            android:layout_below="@+id/textViewModulenaam"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/textViewAantalDocenten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nummer_docenten"
+            android:layout_marginLeft="5dp"
+            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+            android:layout_alignTop="@+id/textViewAantal"
+            android:layout_toEndOf="@+id/textViewAantal" />
+    </RelativeLayout>
+
+</RelativeLayout>
