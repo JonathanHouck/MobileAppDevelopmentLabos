@@ -6,6 +6,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import be.howest.nmct.evaluationstudents.admin.Student;
 
-public class StudentsActivity extends Activity implements StudentsFragment.OnStudentFragmentListener {
+
+public class StudentsActivity extends Activity implements StudentsFragment.OnStudentFragmentListener, DiplomagraadFragment.OnDiplomagraadFragmentListener {
+
+    private DrawerLayout dl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +28,11 @@ public class StudentsActivity extends Activity implements StudentsFragment.OnStu
         setContentView(R.layout.activity_students);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new StudentsFragment())
+                    .add(R.id.container, new StudentsFragment(), "StudentFragment")
                     .commit();
         }
+
+        dl = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
 
@@ -61,6 +69,24 @@ public class StudentsActivity extends Activity implements StudentsFragment.OnStu
         StudentDetailsFragment fragment = StudentDetailsFragment.newInstance(sEmailStudent);
         fragmentTransaction.replace(R.id.container, fragment, "StudentDetailsFragment");
         fragmentTransaction.addToBackStack("show_new_detail");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void demandStudentsDiplomgraad(Student.DIPLOMAGRAAD diplomagraad) {
+        showStudentsDiplomagraadFragment(diplomagraad);
+    }
+
+    private void showStudentsDiplomagraadFragment(Student.DIPLOMAGRAAD diplomagraad) {
+        FragmentManager fragmentManager = getFragmentManager();
+
+        StudentsFragment sf = (StudentsFragment) getFragmentManager().findFragmentByTag("StudentFragment");
+        sf.setDiplomagraadStudents(diplomagraad);
+        dl.closeDrawer(Gravity.LEFT);
+
+        FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, sf);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

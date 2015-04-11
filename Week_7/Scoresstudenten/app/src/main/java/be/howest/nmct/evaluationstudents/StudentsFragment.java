@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
+import be.howest.nmct.evaluationstudents.admin.Student;
 import be.howest.nmct.evaluationstudents.loader.Contract;
 import be.howest.nmct.evaluationstudents.loader.StudentsLoader;
 
@@ -22,6 +23,9 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
 
     private OnStudentFragmentListener mListener;
     private StudentAdapter mStudentAdapter;
+
+    private Student.DIPLOMAGRAAD diplomagraadStudents;
+    private String DIPLOMAGRAAD = "key_diplo";
 
     public StudentsFragment() {
         // Required empty public constructor
@@ -52,7 +56,15 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new StudentsLoader(getActivity());
+
+        if (args == null) {
+            //geen diplomagraad
+            return new StudentsLoader(getActivity());
+        } else {
+            //wel met diplomagraad
+            Student.DIPLOMAGRAAD graad = Student.DIPLOMAGRAAD.values()[args.getInt(DIPLOMAGRAAD)];
+            return new StudentsLoader(getActivity(), graad);
+        }
     }
 
     @Override
@@ -113,7 +125,14 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
         }
     }
 
-    public interface  OnStudentFragmentListener {
+    public interface OnStudentFragmentListener {
         public void demandStudentDetail(String sEmailStudent);
+    }
+
+    public void setDiplomagraadStudents(Student.DIPLOMAGRAAD diplomagraadStudents) {
+        this.diplomagraadStudents = diplomagraadStudents;
+        Bundle bundle = new Bundle();
+        bundle.putInt(DIPLOMAGRAAD, diplomagraadStudents.ordinal());
+        getLoaderManager().restartLoader(0, bundle, this);
     }
 }

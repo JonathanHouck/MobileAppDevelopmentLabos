@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.provider.BaseColumns;
 
+import java.util.List;
+
 import be.howest.nmct.evaluationstudents.admin.Student;
 import be.howest.nmct.evaluationstudents.data.StudentAdmin;
 
@@ -15,6 +17,7 @@ import be.howest.nmct.evaluationstudents.data.StudentAdmin;
 public class StudentsLoader extends AsyncTaskLoader<Cursor> {
 
     private Cursor mCursor;
+    private Student.DIPLOMAGRAAD diplomagraad;
 
     private final String[] mColumnNames = new String[] {
             BaseColumns._ID,
@@ -27,6 +30,11 @@ public class StudentsLoader extends AsyncTaskLoader<Cursor> {
 
     public StudentsLoader(Context context) {
         super(context);
+    }
+
+    public StudentsLoader(Context context, Student.DIPLOMAGRAAD diplomagraad) {
+        super(context);
+        this.diplomagraad = diplomagraad;
     }
 
     @Override
@@ -42,13 +50,17 @@ public class StudentsLoader extends AsyncTaskLoader<Cursor> {
     @Override
     public Cursor loadInBackground() {
         if (mCursor == null) {
-            loadCursor();
+            if (diplomagraad == null) {
+                loadCursor(StudentAdmin.getStudenten());
+            } else {
+                loadCursor(StudentAdmin.getStudenten(this.diplomagraad));
+            }
         }
 
         return mCursor;
     }
 
-    private void loadCursor() {
+    private void loadCursor(List<Student> studenten) {
 
         synchronized (lock) {
             if (mCursor != null) return;
@@ -56,7 +68,7 @@ public class StudentsLoader extends AsyncTaskLoader<Cursor> {
             MatrixCursor cursor = new MatrixCursor(mColumnNames);
             int id = 1;
 
-            for (Student student : StudentAdmin.getStudenten()) {
+            for (Student student : studenten) {
                 MatrixCursor.RowBuilder row = cursor.newRow();
                 row.add(id);
                 row.add(student.getNaamStudent());
