@@ -39,6 +39,7 @@ public class StudentsLoader extends AsyncTaskLoader<Cursor> {
 
     @Override
     protected void onStartLoading() {
+        super.onStartLoading(); //deze lijn zorgt ervoor dat enkel de lijst wordt ingeladen, indien er bv. een textView is, zal deze niet meer ingeladen worden
         if (mCursor != null) {
             deliverResult(mCursor);
         }

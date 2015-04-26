@@ -17,4 +17,5 @@
     <string name="diplomagraad">Diplomagraad</string>
     <string name="select_diplomagraad">Selecteer een diplomagraad</string>
     <string name="diplomagraad_menu">Diplomagraad</string>
+    <string name="title_activity_student_detail">StudentDetailActivity</string>
 </resources>

@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -15,7 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import java.util.List;
+
 import be.howest.nmct.evaluationstudents.admin.Student;
+import be.howest.nmct.evaluationstudents.data.StudentAdmin;
 
 
 public class StudentsActivity extends Activity implements StudentsFragment.OnStudentFragmentListener, DiplomagraadFragment.OnDiplomagraadFragmentListener {
@@ -64,12 +68,20 @@ public class StudentsActivity extends Activity implements StudentsFragment.OnStu
     }
 
     private void showStudentDetailFragment(String sEmailStudent) {
-        FragmentManager fragmentManager = getFragmentManager();
+
+        Intent mStudentActivityIntent = new Intent(this, StudentDetailActivity.class);
+
+        int position = StudentAdmin.getStudenten().indexOf(StudentAdmin.getStudent(sEmailStudent));
+        mStudentActivityIntent.putExtra("position", position);
+
+        startActivity(mStudentActivityIntent);
+
+        /*FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
         StudentDetailsFragment fragment = StudentDetailsFragment.newInstance(sEmailStudent);
         fragmentTransaction.replace(R.id.container, fragment, "StudentDetailsFragment");
         fragmentTransaction.addToBackStack("show_new_detail");
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 
     @Override

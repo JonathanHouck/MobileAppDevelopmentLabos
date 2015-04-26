@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="CustomStyleButton" parent="@android:style/Widget.Button">
+        <item name="android:layout_gravity">right</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/mijn_button</item>
+    </style>
+</resources>

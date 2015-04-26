@@ -1,8 +1,5 @@
 package be.howest.nmct.evaluationstudents;
 
-
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Loader;

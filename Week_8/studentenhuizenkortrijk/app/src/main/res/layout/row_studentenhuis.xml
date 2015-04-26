@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView_house"
+        android:src="@drawable/house"
+        android:layout_margin="8dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:text="@string/adres"
+        android:id="@+id/textView_straat"
+        android:layout_alignTop="@+id/imageView_house"
+        android:layout_toEndOf="@+id/imageView_house"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@drawable/list_item_text_selector"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/huisnr"
+        android:id="@+id/textView_huisnr"
+        android:layout_alignTop="@+id/textView_straat"
+        android:layout_toEndOf="@+id/textView_straat"
+        android:layout_marginStart="10px"
+        android:textColor="@drawable/list_item_text_selector"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="@string/gemeente"
+        android:id="@+id/textView_gemeente"
+        android:layout_below="@+id/textView_straat"
+        android:layout_alignStart="@+id/textView_straat"
+        android:textColor="@drawable/list_item_text_selector"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aantal_kamers"
+        android:id="@+id/textView_aantal_kamers"
+        android:layout_alignTop="@+id/textView_gemeente"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:textColor="@drawable/list_item_text_selector"
+        />
+</RelativeLayout>

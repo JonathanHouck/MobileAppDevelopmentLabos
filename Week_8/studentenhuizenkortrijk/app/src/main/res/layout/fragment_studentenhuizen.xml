@@ -1,0 +1,19 @@
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudentenhuizenActivity$PlaceholderFragment">
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@android:id/list"
+        android:listSelector="@drawable/list_color_selector">
+    </ListView>
+
+</RelativeLayout>-->
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/studentenhuizen_recycler_view"
+    android:scrollbars="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
