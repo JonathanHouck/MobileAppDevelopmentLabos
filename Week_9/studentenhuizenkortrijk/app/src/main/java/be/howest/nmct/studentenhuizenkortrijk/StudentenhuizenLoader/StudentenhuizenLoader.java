@@ -39,6 +39,10 @@ public class StudentenhuizenLoader extends AsyncTaskLoader<Cursor> {
         super(context);
     }
 
+    /*public StudentenhuizenLoader(Context context) {
+        super(context);
+    }*/
+
     @Override
     protected void onStartLoading() {
         //super.onStartLoading(); //custom listview
